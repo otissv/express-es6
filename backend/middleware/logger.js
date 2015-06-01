@@ -4,6 +4,7 @@
 
 'use strict';
 
+
 let logger = function(app) {
   switch (app.get('env')) {
   case 'development':
@@ -16,5 +17,6 @@ let logger = function(app) {
     break;
   }
 };
+
 
 export default logger;

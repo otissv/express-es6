@@ -16,7 +16,7 @@ require('../backend/env/env.js')(app);
 */
 require('../backend/middleware/views.js')(app);
 require('../backend/middleware/logger.js')(app);
-// require('../backend/middleware/body.js')(app);
+require('../backend/middleware/body.js')(app);
 // require('../backend/middleware/staticFiles.js')(app, express);
 
 
