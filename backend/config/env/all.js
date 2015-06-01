@@ -2,13 +2,11 @@
 
 var secret = {session :'to be imported'};
 
-// =============================================================================
-// Configuration
-// =============================================================================
+
 let all = {
-  title: 'React Starter',
-  description: 'Full-Stack JavaScript with MongoDB, Express, React, and Node.js',
-  keywords: 'MongoDB, Express, React, and Node.js',
+  title: 'Express-es6',
+  description: 'Express server with MongoDB',
+  keywords: 'MongoDB, Express, Node.js',
   port: process.env.PORT || 3000,
   session: secret.session,
   db: {
@@ -20,5 +18,6 @@ let all = {
     }
   }
 };
+
 
 export default all;

@@ -3,7 +3,7 @@
 import all from './all.js';
 
 
-var production = {
+let production = {
   port: all.port,
   baseURL: 'http://www.yourwebsite.com',
   title:  all.title,

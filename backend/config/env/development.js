@@ -3,7 +3,7 @@
 import all from './all.js';
 
 
-var development = {
+let development = {
   port: all.port,
   baseURL: 'http://localhost:' + all.port,
   title:  all.title + '- Development Environment',
