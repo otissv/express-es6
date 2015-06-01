@@ -1,0 +1,23 @@
+{
+  "name": "express-es6",
+  "version": "1.0.0",
+  "description": "Express ES6 Starter",
+  "scripts": {
+    "start": "parallelshell 'npm run browser' 'npm run server'",
+    "browser": "browser-sync start --config 'bs-config.js'",
+    "server": "nodemon --exec npm run babel-node -- ./backend/server.js localhost 3000",
+    "babel-node": "babel-node",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Otis Virginie",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^5.4.7",
+    "express": "^4.12.4",
+    "nodemon": "^1.3.7"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.7.6",
+    "parallelshell": "^1.1.1"
+  }
+}
