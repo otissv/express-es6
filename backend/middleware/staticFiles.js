@@ -8,9 +8,9 @@ import compression from 'compression';
 import path from 'path';
 
 
-let staticFiles = function(app, express) {
+let staticFiles = (app, express) => {
   app.use(compression({
-    filter: function(req, res) {
+    filter: (req, res) => {
       return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
     },
     level: 9
