@@ -2,18 +2,14 @@
 
 'use strict';
 
-var express = require('express');
-var app = express();
+import app from './app.js';
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
+// =============================================================================
+// Application Sever
+// =============================================================================
 
-var server = app.listen(3000, function () {
+app.set('port', process.env.PORT || app.locals.port);
 
-  var host = server.address().address;
-  var port = server.address().port;
-
-  console.log('Example app listening at http://%s:%s', host, port);
-
+var server = app.listen(app.get('port'), function() {
+  console.log('Express server started in ' + app.get('env') + ' mode on http://localhost:' + server.address().port);
 });
