@@ -1,10 +1,12 @@
-'use strict';
-
 /*
 * Sets view engine and views directory path
 */
-var swig = require('swig');
-var path = require('path');
+
+'use strict';
+
+
+import swig from 'swig';
+import path from 'path';
 
 
 let view = function(app) {
