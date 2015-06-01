@@ -9,7 +9,7 @@ var env = require('../backend/config/env.js')(app);
 
 
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  res.send(200, 'Hello World!');
 });
 
 export default app;

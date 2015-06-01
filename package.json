@@ -7,7 +7,7 @@
     "browser": "browser-sync start --config 'bs-config.js'",
     "server": "nodemon --exec npm run babel-node -- ./backend/server.js localhost 3000",
     "babel-node": "babel-node",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers js:babel/register --reporter spec -t 500 --watch --recursive __tests__"
   },
   "author": "Otis Virginie",
   "license": "ISC",
@@ -19,7 +19,12 @@
   "devDependencies": {
     "babel-eslint": "^3.1.9",
     "browser-sync": "^2.7.6",
+    "chai": "^2.3.0",
     "eslint": "^0.22.1",
-    "parallelshell": "^1.1.1"
+    "mocha": "^2.2.5",
+    "parallelshell": "^1.1.1",
+    "sinon": "^1.14.1",
+    "sinon-chai": "^2.7.0",
+    "supertest": "^1.0.1"
   }
 }
