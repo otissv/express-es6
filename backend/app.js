@@ -3,13 +3,24 @@
 /*
 * Configuration
 */
-var express = require('express');
-var app = express();
-var env = require('../backend/config/env.js')(app);
+import express from 'express';
+let app = express();
+
+
+require('../backend/config/env.js')(app);
+
+
+/*
+* Middleware
+*/
+require('../backend/middleware/views.js')(app);
+// require('../backend/config/logger.js')(app);
+// require('../backend/config/body.js')(app);
+// require('../backend/config/staticFiles.js')(app, express);
 
 
 app.get('/', function (req, res) {
-  res.send(200, 'Hello World!');
+  res.render('index');
 });
 
 export default app;
