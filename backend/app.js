@@ -1,13 +1,14 @@
 'use strict';
 
-/*
-* Configuration
-*/
+
 import express from 'express';
 let app = express();
 
 
-require('../backend/config/env.js')(app);
+/*
+* Envioment configuration
+*/
+require('../backend/env/env.js')(app);
 
 
 /*

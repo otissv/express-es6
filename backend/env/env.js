@@ -5,10 +5,10 @@ var env = function(app) {
   var config;
   switch (app.get('env')) {
     case 'development':
-      config = require('./env/development.js');
+      config = require('./development.js');
       break;
     case 'production':
-      config = require('./env/production.js');
+      config = require('./production.js');
       break;
     default:
       throw new Error('Unknow exection Enviorment:');
