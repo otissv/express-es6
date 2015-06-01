@@ -14,9 +14,9 @@ require('../backend/config/env.js')(app);
 * Middleware
 */
 require('../backend/middleware/views.js')(app);
-// require('../backend/config/logger.js')(app);
-// require('../backend/config/body.js')(app);
-// require('../backend/config/staticFiles.js')(app, express);
+require('../backend/middleware/logger.js')(app);
+// require('../backend/middleware/body.js')(app);
+// require('../backend/middleware/staticFiles.js')(app, express);
 
 
 app.get('/', function (req, res) {
