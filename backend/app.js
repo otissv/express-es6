@@ -4,14 +4,14 @@ import express from "express";
 import database from "../backend/database/database.js";
 import passport from "passport";
 import { env } from "../backend/env/env.js";
-import { views } from "../backend/middleware/views.js";
-import { logger } from "../backend/middleware/logger.js";
-import { body } from "../backend/middleware/body.js";
-import { staticFiles } from"../backend/middleware/staticFiles.js";
-import { session } from "../backend/middleware/session.js";
-import { passportInitialize, passportSession } from "../backend/middleware/authorisation.js";
+import { views } from "../backend/middleware/views-middleware.js";
+import { logger } from "../backend/middleware/logger-middleware.js";
+import { body } from "../backend/middleware/body-middleware.js";
+import { staticFiles } from"../backend/middleware/staticFiles-middleware.js";
+import { session } from "../backend/middleware/session-middleware.js";
+import { passportInitialize, passportSession } from "../backend/middleware/authorisation-middleware.js";
+// import { security } from "../backend/middleware/security-middleware.js";
 import { routes } from "./routes.js";
-// import { security } from "../backend/middleware/security.js";
 
 let app = express();
 

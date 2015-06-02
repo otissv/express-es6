@@ -4,7 +4,7 @@
 
 "use strict";
 
-import { core } from "./controllers/core.js";
+import { core } from "./controllers/core-controller.js";
 
 
 let routes = (app) => {
