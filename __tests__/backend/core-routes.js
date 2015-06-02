@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
-import app from '../../backend/app.js'
+import app from "../../backend/app.js"
 
-var request = require ('supertest');
+var request = require ("supertest");
 
-describe('Core routes', () => {
+describe("Core routes", () => {
 
-  it('Gets /', done => {
+  it("Gets /", done => {
     request(app)
-      .get('/')
+      .get("/")
       .expect(200, done)
   });
 

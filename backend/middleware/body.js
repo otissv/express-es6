@@ -3,17 +3,17 @@
 * Should be placed before express.static
 */
 
-'use strict';
+"use strict";
 
 
-import bodyParser from 'body-parser';
-import methodOverride from 'method-override';
+import bodyParser from "body-parser";
+import methodOverride from "method-override";
 
 
-let body = function(app) {
-  app.use(bodyParser.json()); // Parse application/json
-  app.use(bodyParser.urlencoded({ extended: false })); // Parse application/x-www-form-urlencoded
-  app.use(methodOverride());// Over ride request header
+let body = (app) => {
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(methodOverride());
 };
 
-export default body;
+export { body };

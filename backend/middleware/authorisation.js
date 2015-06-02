@@ -2,10 +2,10 @@
 * Application Authorisation
 */
 
-'use strict';
+"use strict";
 
-import User from '../modules/users/users.model.js';
-var LocalStrategy = require('passport-local').Strategy;
+import User from "../models/users.model.js";
+var LocalStrategy = require("passport-local").Strategy;
 
 
 /*
@@ -40,14 +40,14 @@ let passportSession = (passport) => {
   /*
   * Local Strategy
   */
-  passport.use('local-signup', new LocalStrategy(
+  passport.use("local-signup", new LocalStrategy(
     (username, password, done) => {
       User.findOne({ username: username }, (err, user) => {
         if (err) {
           return done(err);
         }
         if (user) {
-          return done(null, false, { failureFlash: 'That email is already taken.'});
+          return done(null, false, { failureFlash: "That email is already taken."});
         } else {
 
           var newUser = new User();
@@ -55,11 +55,11 @@ let passportSession = (passport) => {
           // newUser.firstName = firstName;
           // newUser.lastName  = lastName;
           newUser.username = username;
-          // newUser.displayName = firstName + ' ' + lastName;
+          // newUser.displayName = firstName + " " + lastName;
           // newUser.email = email;
           newUser.password = newUser.generateHash(password);
-          newUser.provider = 'local';
-          newUser.rolesn = 'user';
+          newUser.provider = "local";
+          newUser.rolesn = "user";
           newUser.updated = Date.now();
           newUser.lastLogin = Date.now();
 
@@ -75,15 +75,15 @@ let passportSession = (passport) => {
   ));
 
 
-  passport.use('local-signin', new LocalStrategy(
+  passport.use("local-signin", new LocalStrategy(
     (username, password, done) => {
       User.findOne({username: username }, (err, user) => {
         if (err) { return done(err); }
         if (!user) {
-          return done(null, false, { failureFlash: 'Incorrect username.' });
+          return done(null, false, { failureFlash: "Incorrect username." });
         }
         if (!user.validPassword(password)) {
-          return done(null, false, { failureFlash: 'Incorrect password.' });
+          return done(null, false, { failureFlash: "Incorrect password." });
         }
         return done(null, user);
       });
