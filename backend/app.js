@@ -11,7 +11,7 @@ import { staticFiles } from"../backend/middleware/staticFiles.js";
 import { session } from "../backend/middleware/session.js";
 import { passportInitialize, passportSession } from "../backend/middleware/authorisation.js";
 import { routes } from "./routes.js";
-import { security } from "../backend/middleware/security.js";
+// import { security } from "../backend/middleware/security.js";
 
 let app = express();
 
@@ -24,7 +24,7 @@ staticFiles(app, express);
 session(app, database.instance());
 passportInitialize(app, passport);
 passportSession(passport);
-security(app);
+// security(app);
 routes(app);
 
 export default app;

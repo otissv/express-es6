@@ -4,10 +4,14 @@
 
 "use strict";
 
+import { core } from "./controllers/core.js";
+
+
 let routes = (app) => {
-  app.get("/", (req, res) => {
-    res.render("index");
-  });
+  // Core routes
+  app.route("/").get(core.layout);
+  app.use(core.error404);
+  app.use(core.error505);
 };
 
 export { routes };
