@@ -7,7 +7,7 @@
     "browser": "browser-sync start --config 'bs-config.js'",
     "server": "nodemon --exec npm run babel-node -- ./backend/server.js localhost 3000",
     "babel-node": "babel-node",
-    "test": "mocha --compilers js:babel/register --reporter spec -t 500 --watch --recursive __tests__"
+    "test": "mocha --compilers js:babel/register -t 500 --watch --recursive __tests__"
   },
   "author": "Otis Virginie",
   "license": "ISC",
