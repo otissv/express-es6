@@ -9,7 +9,7 @@ import { core } from "./controllers/core.js";
 
 let routes = (app) => {
   // Core routes
-  app.route("/").get(core.layout);
+  app.route("/").get(core.index);
   app.use(core.error404);
   app.use(core.error505);
 };

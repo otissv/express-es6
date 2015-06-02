@@ -5,10 +5,9 @@
 "use strict";
 
 
-
 let core = {
-  layout (req, res ) {
-    res.render("layout");
+  index (req, res ) {
+    res.render("index");
   },
 
   error404 (req, res) {
