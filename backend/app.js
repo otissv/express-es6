@@ -10,6 +10,7 @@ import { body } from "../backend/middleware/body.js";
 import { staticFiles } from"../backend/middleware/staticFiles.js";
 import { session } from "../backend/middleware/session.js";
 import { passportInitialize, passportSession } from "../backend/middleware/authorisation.js";
+import { routes } from "./routes.js";
 
 let app = express();
 
@@ -25,9 +26,7 @@ passportSession(passport);
 
 // require("../backend/middleware/security.js")(app);
 
+routes(app);
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
 
 export default app;
