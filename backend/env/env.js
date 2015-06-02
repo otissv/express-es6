@@ -1,15 +1,18 @@
 "use strict";
 
+import { development } from "./development-env.js";
+import { production } from "./production-env.js";
+
 
 var env = (app) => {
   var config;
 
   switch (app.get("env")) {
     case "development":
-      config = require("./development.js");
+      config = development;
       break;
     case "production":
-      config = require("./production.js");
+      config = production;
       break;
     default:
       throw new Error("Unknow exection Enviorment:");

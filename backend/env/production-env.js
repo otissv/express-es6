@@ -1,6 +1,6 @@
 "use strict";
 
-import all from "./all.js";
+import { all } from "./all-env.js";
 
 
 let production = {
@@ -14,4 +14,4 @@ let production = {
   session: all.session
 };
 
-export default production;
+export { production };

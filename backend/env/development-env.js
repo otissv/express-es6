@@ -1,6 +1,6 @@
 "use strict";
 
-import all from "./all.js";
+import { all } from "./all-env.js";
 
 
 let development = {
@@ -12,4 +12,4 @@ let development = {
 };
 
 
-export default development;
+export { development };

@@ -20,4 +20,4 @@ let all = {
 };
 
 
-export default all;
+export { all };
