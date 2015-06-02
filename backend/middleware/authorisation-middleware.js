@@ -47,9 +47,8 @@ let passportSession = (passport) => {
           return done(err);
         }
         if (user) {
-          return done(null, false, { failureFlash: "That email is already taken."});
+          return done(null, false, { message: "Username already taken"});
         } else {
-
           var newUser = new User();
 
           // newUser.firstName = firstName;
@@ -80,10 +79,10 @@ let passportSession = (passport) => {
       User.findOne({username: username }, (err, user) => {
         if (err) { return done(err); }
         if (!user) {
-          return done(null, false, { failureFlash: "Incorrect username." });
+          return done(null, false, { message: "Incorrect username" });
         }
         if (!user.validPassword(password)) {
-          return done(null, false, { failureFlash: "Incorrect password." });
+          return done(null, false, { message: "Incorrect password" });
         }
         return done(null, user);
       });
