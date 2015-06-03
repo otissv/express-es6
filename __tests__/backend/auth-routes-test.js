@@ -42,4 +42,18 @@ describe('Authorisation routes', () => {
       .expect(302, done);
   });
 
+  it('User already exists', done => {
+    let signupDetails = {
+      username: 'otis',
+      password: 'xyz'
+    };
+
+    request(app)
+      .post('/signup')
+      .send(signupDetails)
+      .expect(401, done);
+  });
+
+  it('User already exists');
+
 });
