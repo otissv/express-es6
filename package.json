@@ -7,7 +7,7 @@
     "browser": "browser-sync start --config 'bs-config.js'",
     "server": "nodemon --exec npm run babel-node -- ./backend/server.js localhost 3000",
     "babel-node": "babel-node",
-    "test": "mocha --compilers js:babel/register -t 500 --watch --recursive __tests__"
+    "test": "mocha --compilers js:babel/register --reporter min -t 500 --watch --recursive __tests__"
   },
   "author": "Otis Virginie",
   "license": "ISC",
@@ -38,7 +38,9 @@
     "browser-sync": "^2.7.6",
     "chai": "^2.3.0",
     "eslint": "^0.22.1",
+    "faker": "^2.1.3",
     "mocha": "^2.2.5",
+    "mongodb": "^2.0.33",
     "morgan": "^1.5.3",
     "parallelshell": "^1.1.1",
     "sinon": "^1.14.1",
