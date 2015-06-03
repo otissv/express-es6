@@ -2,22 +2,29 @@
 
 import app from '../../backend/app.js';
 import request from 'supertest';
-import helpers from '../test-helpers.js';
+import helpers from '../helpers/helpers.js';
 
 
 describe('Authorisation routes', () => {
 
   before( () => {
-    helpers.collections({
+    helpers.dbCollection({
       url   : 'mongodb://127.0.0.1:27017/test',
       drop  : ['users'],
-      seed  : [ ['users', 3] ]
+      seed  : ['users'],
+      insert:[{
+        name: 'users',
+        data: {
+          username: 'ania',
+          password: 'xyz'
+        }
+      }]
     });
   });
 
 
   after( () => {
-    helpers.uncache('../../backend/app.js');
+    helpers.uncacheModule('../../backend/app.js');
   });
 
 

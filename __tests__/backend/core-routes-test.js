@@ -2,11 +2,11 @@
 
 import app from '../../backend/app.js';
 import request from 'supertest';
-import helpers from '../test-helpers.js';
+import helpers from '../helpers/helpers.js';
 
 describe('Core routes', () => {
   after( () => {
-    helpers.uncache('../../backend/app.js');
+    helpers.uncacheModule('../../backend/app.js');
   });
 
   it('Can get /', done => {
