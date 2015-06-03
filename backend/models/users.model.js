@@ -2,13 +2,13 @@
 
 // User model
 
-"use strict";
+'use strict';
 
 // =============================================================================
 // Dependencies.
 // =============================================================================
-var mongoose = require("mongoose");
-var bcrypt = require("bcrypt-nodejs");
+var mongoose = require('mongoose');
+var bcrypt = require('bcrypt-nodejs');
 
 
 // =============================================================================
@@ -17,11 +17,11 @@ var bcrypt = require("bcrypt-nodejs");
 var userSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    default: ""
+    default: ''
   },
   lastName: {
     type: String,
-    default: ""
+    default: ''
   },
   displayName: {
     type: String
@@ -29,31 +29,31 @@ var userSchema = new mongoose.Schema({
   username: {
     type: String,
     unique: true,
-    required: "Please fill in a username",
+    required: 'Please fill in a username',
     trim: true
   },
   email: {
     type: String,
     unique:true,
-    // required: "Please fill in your email"
-    // match: [/.+\@.+\..+/, "Please fill a valid email address"]
+    // required: 'Please fill in your email'
+    // match: [/.+\@.+\..+/, 'Please fill a valid email address']
   },
   password: {
     type: String,
-    default: ""
+    default: ''
   },
   provider: {
     type: String,
-    required: "Provider is required"
+    required: 'Provider is required'
   },
   providerData: {},
   additionalProvidersData: {},
   roles: {
     type: [{
       type: String,
-      enum: ["user", "admin"]
+      enum: ['user', 'admin']
     }],
-    default: ["user"]
+    default: ['user']
   },
   created: {
     type: Date
@@ -83,4 +83,4 @@ userSchema.methods.validPassword = (password) => {
 };
 
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model('User', userSchema);

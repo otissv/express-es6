@@ -2,22 +2,22 @@
 * Application Static files
 */
 
-"use strict";
+'use strict';
 
-import compression from "compression";
-import path from "path";
+import compression from 'compression';
+import path from 'path';
 
 
 let staticFiles = (app, express) => {
   app.use(compression({
     filter: (req, res) => {
-      return (/json|text|javascript|css/).test(res.getHeader("Content-Type"));
+      return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
     },
     level: 9
   }));
 
   // Static files locations
-  app.use(express.static(path.join(__dirname, "../../public/")));
+  app.use(express.static(path.join(__dirname, '../../public/')));
 };
 
-export { staticFiles };
+export default staticFiles ;

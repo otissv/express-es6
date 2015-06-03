@@ -1,40 +1,15 @@
 /*
-* Application Authorisation
+* Authorisation strategies
 */
 
 'use strict';
 
-import User from '../models/users.model.js';
 var LocalStrategy = require('passport-local').Strategy;
 
-
-let authorisation = (app, passport) => {
-
-  /*
-  * Initalise passport
-  */
-  app.use(passport.initialize());
-  app.use(passport.session());
-
-  app.use( (req, res, next) => {
-    res.locals.login = req.user;
-    next();
-  });
+import User from '../models/users.model.js';
 
 
-  /*
-  * Passport session
-  */
-  passport.serializeUser( (user, done) => {
-    done(null, user.id);
-  });
-
-  passport.deserializeUser( (id, done) => {
-    User.findById(id, (err, user) => {
-      done(err, user);
-    });
-  });
-
+let strategies = (passport) => {
 
   /*
   * Local Strategy
@@ -89,5 +64,4 @@ let authorisation = (app, passport) => {
   ));
 };
 
-
-export default authorisation ;
+export default strategies;

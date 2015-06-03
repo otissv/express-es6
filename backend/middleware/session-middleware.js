@@ -2,14 +2,14 @@
 *Application session
 */
 
-"use strict";
+'use strict';
 
 
-import expressSession from "express-session";
-import cookieParser from "cookie-parser";
-import flash from "req-flash";
+import expressSession from 'express-session';
+import cookieParser from 'cookie-parser';
+import flash from 'req-flash';
 
-let MongoStore = require("connect-mongo")(expressSession);
+let MongoStore = require('connect-mongo')(expressSession);
 
 let session = (app, mongoose) => {
   app.use(cookieParser());
@@ -21,7 +21,7 @@ let session = (app, mongoose) => {
     resave: true
   }));
 
-  app.use(flash({ locals: "flash" }));
+  app.use(flash({ locals: 'flash' }));
 };
 
-export { session };
+export default session ;

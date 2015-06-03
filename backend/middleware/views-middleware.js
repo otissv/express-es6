@@ -2,18 +2,18 @@
 * Sets view engine and views directory path
 */
 
-"use strict";
+'use strict';
 
 
-import swig from "swig";
-import path from "path";
+import swig from 'swig';
+import path from 'path';
 
 
 let views = (app) => {
-  app.engine("html", swig.renderFile);
-  app.set("view engine", "html");
+  app.engine('html', swig.renderFile);
+  app.set('view engine', 'html');
 
-  app.set("views", path.join(__dirname, "../../backend/views/"));
+  app.set('views', path.join(__dirname, '../../backend/views/'));
 };
 
-export { views };
+export default views;

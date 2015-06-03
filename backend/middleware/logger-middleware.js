@@ -2,16 +2,16 @@
 * Application logger
 */
 
-"use strict";
+'use strict';
 
 
 let logger = (app) => {
-  switch (app.get("env")) {
-  case "development":
-    app.use(require("morgan")("dev"));
+  switch (app.get('env')) {
+  case 'development':
+    app.use(require('morgan')('dev'));
     break;
-  case "production":
-    app.use(require("experss-logger")({
+  case 'production':
+    app.use(require('experss-logger')({
       path:`${__dirname} /log/requests.log`
     }));
     break;
@@ -19,4 +19,4 @@ let logger = (app) => {
 };
 
 
-export { logger };
+export default logger;

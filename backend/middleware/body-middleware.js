@@ -3,11 +3,11 @@
 * Should be placed before express.static
 */
 
-"use strict";
+'use strict';
 
 
-import bodyParser from "body-parser";
-import methodOverride from "method-override";
+import bodyParser from 'body-parser';
+import methodOverride from 'method-override';
 
 
 let body = (app) => {
@@ -16,4 +16,4 @@ let body = (app) => {
   app.use(methodOverride());
 };
 
-export { body };
+export default body;

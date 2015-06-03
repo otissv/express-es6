@@ -1,28 +1,28 @@
-"use strict";
+'use strict';
 
-import { development } from "./development-env.js";
-import { production } from "./production-env.js";
+import development from './development-env.js';
+import production from './production-env.js';
 
 
 var env = (app) => {
   var config;
 
-  switch (app.get("env")) {
-    case "development":
+  switch (app.get('env')) {
+    case 'development':
       config = development;
       break;
-    case "production":
+    case 'production':
       config = production;
       break;
     default:
-      throw new Error("Unknow exection Enviorment:");
+      throw new Error('Unknow exection Enviorment:');
   }
 
 
   /*
   *Application variables
   */
-  app.set("baseURL", config.baseURL);
+  app.set('baseURL', config.baseURL);
   app.locals.port = config.port;
   app.locals.title = config.title;
   app.locals.description = config.description;
@@ -31,4 +31,4 @@ var env = (app) => {
 };
 
 
-export { env };
+export default env;

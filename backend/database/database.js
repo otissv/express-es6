@@ -2,9 +2,9 @@
 * Database connection
 */
 
-"use strict";
+'use strict';
 
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 
 let database = {
@@ -13,20 +13,20 @@ let database = {
     mongoose.connect(db.uri, db.opts);
 
     // Event handlers
-    mongoose.connection.on("connected", () => {
-      console.log("Mongoose connected to " + db.uri);
+    mongoose.connection.on('connected', () => {
+      console.log('Mongoose connected to ' + db.uri);
     });
-    mongoose.connection.on("error", (err) => {
-      console.log("Mongoose connection error: " + err);
-    });
-
-    mongoose.connection.on("disconnected", () => {
-      console.log("Mongoose disconnected");
+    mongoose.connection.on('error', (err) => {
+      console.log('Mongoose connection error: ' + err);
     });
 
-    process.on("SIGINT", () => {
+    mongoose.connection.on('disconnected', () => {
+      console.log('Mongoose disconnected');
+    });
+
+    process.on('SIGINT', () => {
       mongoose.connection.close(() => {
-        console.log("Mongoose disconnected through app termination");
+        console.log('Mongoose disconnected through app termination');
       });
     });
   },

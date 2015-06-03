@@ -37,4 +37,4 @@ let auth = {
   }
 };
 
-export { auth };
+export default auth ;
