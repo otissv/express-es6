@@ -29,21 +29,21 @@ describe('Authorisation routes', () => {
 
 
   describe('Signup routes', () => {
-    it('GET /signup - User can get sign up page', done => {
+    it('Sould GET /signup - User can get sign up page', done => {
       request(app)
-        .get('/')
+        .get('/signup')
         .expect(200, done);
     });
 
 
-    it('POST /signup - User cannot sign up with missing credentials', done => {
+    it('Souuld POST /signup - User cannot sign up with missing credentials', done => {
       request(app)
         .post('/signup')
         .expect(401, done);
     });
 
 
-    it('POST /signup - User can sign up', done => {
+    it('Souuld POST /signup - User can sign up', done => {
       let signupDetails = {
         username: 'otis',
         password: 'xyz'
@@ -56,7 +56,7 @@ describe('Authorisation routes', () => {
     });
 
 
-    it('POST /signup - User already exists', done => {
+    it('Souuld POST /signup - User already exists', done => {
       let signupDetails = {
         username: 'otis',
         password: 'xyz'
@@ -71,19 +71,19 @@ describe('Authorisation routes', () => {
 
 
   describe('Signin routes', () => {
-    it('GET  /signin - User can get sign in page', done => {
+    it('Souuld GET  /signin - User can get sign in page', done => {
       request(app)
         .get('/signin')
         .expect(200, done);
     });
 
-    it('POST /signin - User cannot sign in with missing credentials', done => {
+    it('Souuld POST /signin - User cannot sign in with missing credentials', done => {
       request(app)
         .post('/signin')
         .expect(401, done);
     });
 
-    it('POST /signin - User cannot sign in with incorrect credentials', done => {
+    it('Souuld POST /signin - User cannot sign in with incorrect credentials', done => {
       let signupDetails = {
         username: 'otis',
         password: 'incorrect'
@@ -95,7 +95,7 @@ describe('Authorisation routes', () => {
         .expect(401, done);
     });
 
-    it('POST /signin - User can sign in', done => {
+    it('Souuld POST /signin - User can sign in', done => {
       let signupDetails = {
         username: 'otis',
         password: 'xyz'
@@ -109,7 +109,7 @@ describe('Authorisation routes', () => {
   });
 
   describe('Signout route', () => {
-    it('POST /signout - User can sign out & redirected to /', done => {
+    it('Souuld POST /signout - User can sign out & redirected to /', done => {
       request(app)
         .get('/signout')
         .expect(302, done);

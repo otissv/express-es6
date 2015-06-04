@@ -9,7 +9,7 @@ describe('Core routes', () => {
     helpers.uncacheModule('../../backend/app.js');
   });
 
-  it('Can get /', done => {
+  it('Should GET / - User can get home page', done => {
     request(app)
       .get('/')
       .expect(200, done);
