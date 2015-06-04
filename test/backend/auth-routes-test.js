@@ -29,7 +29,6 @@ describe('Authorisation routes', () => {
 
 
   describe('Signup routes', () => {
-
     it('GET /signup - User can get sign up page', done => {
       request(app)
         .get('/')
@@ -72,16 +71,48 @@ describe('Authorisation routes', () => {
 
 
   describe('Signin routes', () => {
+    it('GET  /signin - User can get sign in page', done => {
+      request(app)
+        .get('/signin')
+        .expect(200, done);
+    });
 
-    it('GET  /signin - User can get sign in page');
-    it('POST /signin - User cannot sign in with missing credentials');
-    it('POST /signin - User cannot sign in with incorrect credentials');
-    it('POST /signin - User can sign in');
+    it('POST /signin - User cannot sign in with missing credentials', done => {
+      request(app)
+        .post('/signin')
+        .expect(401, done);
+    });
+
+    it('POST /signin - User cannot sign in with incorrect credentials', done => {
+      let signupDetails = {
+        username: 'otis',
+        password: 'incorrect'
+      };
+
+      request(app)
+        .post('/signin')
+        .send(signupDetails)
+        .expect(401, done);
+    });
+
+    it('POST /signin - User can sign in', done => {
+      let signupDetails = {
+        username: 'otis',
+        password: 'xyz'
+      };
+
+      request(app)
+        .post('/signin')
+        .send(signupDetails)
+        .expect(302, done);
+    });
   });
 
-
   describe('Signout route', () => {
-
-    it('POST /signout - User can sign out & redirected to /');
+    it('POST /signout - User can sign out & redirected to /', done => {
+      request(app)
+        .get('/signout')
+        .expect(302, done);
+    });
   });
 });

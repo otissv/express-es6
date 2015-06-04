@@ -21,7 +21,7 @@ let seed = {
     for (var i = 0; i < count; i++) {
       documents.push( new Schema());
     }
-    console.log(documents);
+    
     return documents;
   }
 };

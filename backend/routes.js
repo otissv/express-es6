@@ -10,11 +10,16 @@ import auth from './controllers/auth-controller.js';
 
 let routes = (app) => {
   // Authentication routes
-  app.route('/signup').get(auth.signupUser);
-  app.route('/signup').post(auth.processSignUp);
-  // app.route('/signin').get(auth.signinUser);
-  // app.route('/signin').post(auth.processSigningInUser);
-  // app.route('/signout').get(auth.signoutUser);
+  app.route('/signup')
+   .get(auth.signUp)
+   .post(auth.processSignUp);
+
+  app.route('/signin')
+    .get(auth.signIn)
+    .post(auth.processSignIn);
+
+  app.route('/signout')
+    .get(auth.signOut);
 
   // Core routes
   // app.route('/api/v1/users/:user')

@@ -1,53 +1,48 @@
-// backend/user/user.model.js
-
-// User model
-
+/*
+*
+ User model
+*/
 'use strict';
 
-// =============================================================================
-// Dependencies.
-// =============================================================================
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt-nodejs';
 
 
-// =============================================================================
-// User Schema.
-// =============================================================================
-var userSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    default: ''
-  },
-  lastName: {
-    type: String,
-    default: ''
-  },
-  displayName: {
-    type: String
-  },
+let userSchema = new mongoose.Schema({
+  firstName: String,
+
+  lastName: String,
+
+  displayName: String,
+
   username: {
     type: String,
     unique: true,
-    required: 'Please fill in a username',
+    required: 'Please fill in username',
     trim: true
   },
+
   email: {
     type: String,
-    unique:true,
+    // unique:true,
     // required: 'Please fill in your email'
     // match: [/.+\@.+\..+/, 'Please fill a valid email address']
   },
+
   password: {
     type: String,
-    default: ''
+    required: 'Please fill in password'
   },
+
   provider: {
     type: String,
-    required: 'Provider is required'
+    default: 'local'
   },
+
   providerData: {},
+
   additionalProvidersData: {},
+
   roles: {
     type: [{
       type: String,
@@ -55,32 +50,31 @@ var userSchema = new mongoose.Schema({
     }],
     default: ['user']
   },
+
+  lastLogin: {
+    type: Date
+  },
   created: {
     type: Date
   },
+
   updated: {
     type: Date,
     default: Date.now
-  },
-  lastLogin: {
-    type: Date
   }
 });
 
 
-// =============================================================================
-// Methods
-// =============================================================================
-
-// generating a hash
-userSchema.methods.generateHash = (password) => {
+/*
+/* Methods
+*/
+userSchema.methods.generateHash = function generateHash (password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-// checking if password is valid
-userSchema.methods.validPassword = (password) => {
+userSchema.methods.validPassword = function validPassword (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
 
-module.exports = mongoose.model('User', userSchema);
+export default mongoose.model('User', userSchema);
