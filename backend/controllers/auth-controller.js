@@ -4,7 +4,7 @@
 
 'use strict';
 import passport from 'passport';
-import User from '../models/users.model.js';
+import User from '../models/users-model.js';
 
 
 
