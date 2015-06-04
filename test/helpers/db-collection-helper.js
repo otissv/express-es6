@@ -5,6 +5,7 @@
 'use strict';
 
 import seed from './seed-helper.js';
+import objectID from "bson-objectid";
 
 
 let dropCollection = (db, dropCols) => {
@@ -36,7 +37,9 @@ let dbCollection = (opts) => {
 
   // Add docs to to documents to be inserted
   MongoClient.connect(url, (err, db) => {
-    if (err) { console.log(err); }
+    if (err) {
+      console.log(err);
+    }
 
     // Drop collections
     if (typeof dropCols !== 'undefined') {
@@ -56,7 +59,7 @@ let dbCollection = (opts) => {
     if (typeof docs !== 'undefined') {
       if (Array.isArray(docs)) {
         docs.forEach( (docItem) => {
-          let tmp = typeof documents[docItem.name] === 'undefined' ? documents[docItem.name] = [] : documents[docItem.name];
+          let tmp = typeof documents[docItem.collection] === 'undefined' ? documents[docItem.collection] = [] : documents[docItem.collection];
 
           tmp.push(docItem.data);
 
@@ -66,6 +69,9 @@ let dbCollection = (opts) => {
           insertDocuments(db, key, documents[key]);
         });
       } else {
+        if (typeof docs.data._id !== 'undefined') {
+          docs.data._id = objectID();
+        }
 
         documents[docs.name] = docs.data;
 
@@ -77,4 +83,38 @@ let dbCollection = (opts) => {
 };
 
 
-export default dbCollection;
+/*
+* Insert one document in to the data base
+*/
+let insertOne = (opts) => {
+
+  const url = opts.url;
+  const collection = opts.collection;
+  const document = opts.data;
+
+  const data = {
+   id: objectID(),
+   document
+ };
+
+  let MongoClient = require('mongodb').MongoClient;
+
+  MongoClient.connect(url, (err, db) => {
+    if (err) {
+      console.log(err);
+    }
+
+    insertDocuments(db, collection, document);
+  });
+
+  return data;
+};
+
+
+let dbHelper = {
+  collection: dbCollection,
+  insertOne
+};
+
+
+export default dbHelper;

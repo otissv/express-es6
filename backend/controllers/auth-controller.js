@@ -1,8 +1,10 @@
-// backend/user/user.controller.js
+/*
+* User contoller
+*/
 
-// User contoller
 
 'use strict';
+
 import passport from 'passport';
 import User from '../models/users-model.js';
 

@@ -6,6 +6,7 @@
 
 import core from './controllers/core-controller.js';
 import auth from './controllers/auth-controller.js';
+import user from './controllers/user-controller.js';
 
 
 let routes = (app) => {
@@ -22,10 +23,10 @@ let routes = (app) => {
     .get(auth.signOut);
 
   // Core routes
-  // app.route('/api/v1/users/:user')
-  //   .get(user.findUser)
-  //   .put(user.updateUser)
-  //   .delete(user.deleteUser);
+  app.route('/users/:user')
+    .get(user.find)
+    .put(user.update)
+    .delete(user.remove);
 
   // Core routes
   app.route('/').get(core.index);

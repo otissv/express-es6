@@ -8,34 +8,34 @@ import helpers from '../helpers/helpers.js';
 describe('Authorisation routes', () => {
 
   before( () => {
-    helpers.dbCollection({
+    helpers.db.collection({
       url   : 'mongodb://127.0.0.1:27017/test',
       drop  : ['users'],
       // seed  : ['users'],
       insert:[
         {
-          name: 'users',
+          collection: 'users',
           data: {
             username: 'ania',
             password: 'xyz'
           }
         },
         {
-          name: 'users',
+          collection: 'users',
           data: {
             username: 'miock',
             password: 'xyz'
           }
         },
         {
-          name: 'users',
+          collection: 'users',
           data: {
             username: 'jim',
             password: 'xyz'
           }
         },
         {
-          name: 'users',
+          collection: 'users',
           data: {
             username: 'ania',
             password: 'xyz'
@@ -43,7 +43,7 @@ describe('Authorisation routes', () => {
         },
 
         {
-          name: 'posts',
+          collection: 'posts',
           data: {
             username: 'bob',
             password: 'xyz'
@@ -51,7 +51,7 @@ describe('Authorisation routes', () => {
         },
 
         {
-          name: 'posts',
+          collection: 'posts',
           data: {
             username: 'bob',
             password: 'xyz'
@@ -59,7 +59,7 @@ describe('Authorisation routes', () => {
         },
 
         {
-          name: 'posts',
+          collection: 'posts',
           data: {
             username: 'bob',
             password: 'xyz'
@@ -67,7 +67,7 @@ describe('Authorisation routes', () => {
         },
 
         {
-          name: 'posts',
+          collection: 'posts',
           data: {
             username: 'bob',
             password: 'xyz'
