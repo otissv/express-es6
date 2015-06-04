@@ -4,7 +4,7 @@
 
 'use strict';
 
-import User from '../models/users.model.js';
+import User from '../models/users-model.js';
 var LocalStrategy = require('passport-local').Strategy;
 
 
