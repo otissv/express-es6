@@ -11,14 +11,69 @@ describe('Authorisation routes', () => {
     helpers.dbCollection({
       url   : 'mongodb://127.0.0.1:27017/test',
       drop  : ['users'],
-      seed  : ['users'],
-      insert:[{
-        name: 'users',
-        data: {
-          username: 'ania',
-          password: 'xyz'
+      // seed  : ['users'],
+      insert:[
+        {
+          name: 'users',
+          data: {
+            username: 'ania',
+            password: 'xyz'
+          }
+        },
+        {
+          name: 'users',
+          data: {
+            username: 'miock',
+            password: 'xyz'
+          }
+        },
+        {
+          name: 'users',
+          data: {
+            username: 'jim',
+            password: 'xyz'
+          }
+        },
+        {
+          name: 'users',
+          data: {
+            username: 'ania',
+            password: 'xyz'
+          }
+        },
+
+        {
+          name: 'posts',
+          data: {
+            username: 'bob',
+            password: 'xyz'
+          }
+        },
+
+        {
+          name: 'posts',
+          data: {
+            username: 'bob',
+            password: 'xyz'
+          }
+        },
+
+        {
+          name: 'posts',
+          data: {
+            username: 'bob',
+            password: 'xyz'
+          }
+        },
+
+        {
+          name: 'posts',
+          data: {
+            username: 'bob',
+            password: 'xyz'
+          }
         }
-      }]
+      ]
     });
   });
 
