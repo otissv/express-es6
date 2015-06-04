@@ -19,10 +19,6 @@ let dropCollection = (db, dropCols) => {
 */
 let insertDocuments = (db, collection, data) => {
   db.collection(collection).insert(data);
-
-  // fs.writeFile(`${__dirname}/seed/seed.json`, JSON.stringify(data), (error) => {
-  //   if (error) { console.log(error); }
-  // });
 };
 
 
@@ -35,7 +31,8 @@ let dbCollection = (opts) => {
   let dropCols = opts.drop;
   let insertSeed = opts.seed;
   let docs = opts.insert;
-  let docData = [];
+  let documents = {};
+
 
   // Add docs to to documents to be inserted
   MongoClient.connect(url, (err, db) => {
@@ -55,18 +52,26 @@ let dbCollection = (opts) => {
     }
 
 
-    // Insert param documents into data
-    if (Array.isArray(docs)) {
-      docs.forEach( (docItem) => {
-        docData.push(docItem.data);
-        insertDocuments(db, docItem.name, docData);
-      });
-    } else if (typeof docs !== 'undefined') {
-      docData.push(docs.data);
-      insertDocuments(db, docs.name, docData);
+    // Insert manual documents into data
+    if (typeof docs !== 'undefined') {
+      if (Array.isArray(docs)) {
+        docs.forEach( (docItem) => {
+          let tmp = typeof documents[docItem.name] === 'undefined' ? documents[docItem.name] = [] : documents[docItem.name];
+
+          tmp.push(docItem.data);
+
+        }, documents);
+
+        Object.keys(documents).forEach( (key) => {
+          insertDocuments(db, key, documents[key]);
+        });
+      } else {
+
+        documents[docs.name] = docs.data;
+
+        insertDocuments(db, docs.name, docs.data);
+      }
     }
-
-
     db.close();
   });
 };

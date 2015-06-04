@@ -4,7 +4,6 @@
 
 'use strict';
 
-import fs from 'fs';
 import seed from './seed-helper.js';
 import uncacheModule from './uncache-module-helper.js';
 import dbCollection from './db-collection-helper.js';
