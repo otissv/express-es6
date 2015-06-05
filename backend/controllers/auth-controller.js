@@ -10,7 +10,7 @@ import User from '../models/users-model.js';
 
 
 
-let auth = {
+let authController = {
   signUp (req, res) {
     return res.render('signup', { title: 'Sign up' });
   },
@@ -94,4 +94,4 @@ let auth = {
   }
 };
 
-export default auth ;
+export default authController ;

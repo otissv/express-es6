@@ -11,65 +11,12 @@ describe('Authorisation routes', () => {
     helpers.db.collection({
       url   : 'mongodb://127.0.0.1:27017/test',
       drop  : ['users'],
-      // seed  : ['users'],
+      seed  : ['users'],
       insert:[
         {
           collection: 'users',
           data: {
             username: 'ania',
-            password: 'xyz'
-          }
-        },
-        {
-          collection: 'users',
-          data: {
-            username: 'miock',
-            password: 'xyz'
-          }
-        },
-        {
-          collection: 'users',
-          data: {
-            username: 'jim',
-            password: 'xyz'
-          }
-        },
-        {
-          collection: 'users',
-          data: {
-            username: 'ania',
-            password: 'xyz'
-          }
-        },
-
-        {
-          collection: 'posts',
-          data: {
-            username: 'bob',
-            password: 'xyz'
-          }
-        },
-
-        {
-          collection: 'posts',
-          data: {
-            username: 'bob',
-            password: 'xyz'
-          }
-        },
-
-        {
-          collection: 'posts',
-          data: {
-            username: 'bob',
-            password: 'xyz'
-          }
-        },
-
-        {
-          collection: 'posts',
-          data: {
-            username: 'bob',
             password: 'xyz'
           }
         }
@@ -91,14 +38,14 @@ describe('Authorisation routes', () => {
     });
 
 
-    it('Souuld POST /signup - User cannot sign up with missing credentials', done => {
+    it('Should POST /signup - User cannot sign up with missing credentials', done => {
       request(app)
         .post('/signup')
         .expect(401, done);
     });
 
 
-    it('Souuld POST /signup - User can sign up', done => {
+    it('Should POST /signup - User can sign up', done => {
       let signupDetails = {
         username: 'otis',
         password: 'xyz'
@@ -111,7 +58,7 @@ describe('Authorisation routes', () => {
     });
 
 
-    it('Souuld POST /signup - User already exists', done => {
+    it('Should POST /signup - User already exists', done => {
       let signupDetails = {
         username: 'otis',
         password: 'xyz'
@@ -126,19 +73,19 @@ describe('Authorisation routes', () => {
 
 
   describe('Signin routes', () => {
-    it('Souuld GET  /signin - User can get sign in page', done => {
+    it('Should GET  /signin - User can get sign in page', done => {
       request(app)
         .get('/signin')
         .expect(200, done);
     });
 
-    it('Souuld POST /signin - User cannot sign in with missing credentials', done => {
+    it('Souuld not POST /signin - User cannot sign in with missing credentials', done => {
       request(app)
         .post('/signin')
         .expect(401, done);
     });
 
-    it('Souuld POST /signin - User cannot sign in with incorrect credentials', done => {
+    it('Should not POST /signin - User cannot sign in with incorrect credentials', done => {
       let signupDetails = {
         username: 'otis',
         password: 'incorrect'
@@ -150,7 +97,7 @@ describe('Authorisation routes', () => {
         .expect(401, done);
     });
 
-    it('Souuld POST /signin - User can sign in', done => {
+    it('Should POST /signin - User can sign in', done => {
       let signupDetails = {
         username: 'otis',
         password: 'xyz'
@@ -164,7 +111,7 @@ describe('Authorisation routes', () => {
   });
 
   describe('Signout route', () => {
-    it('Souuld POST /signout - User can sign out & redirected to /', done => {
+    it('Should POST /signout - User can sign out & redirected to /', done => {
       request(app)
         .get('/signout')
         .expect(302, done);

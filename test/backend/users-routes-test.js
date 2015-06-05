@@ -33,14 +33,14 @@ describe('User routes', () => {
   });
 
 
-  it('GET /users/:user - Can get a vaild user', done => {
+  it('Should GET /users/:user - Can get a vaild user', done => {
 
     request(app)
       .get(`/users/${data.id}`)
       .expect(200, done);
   });
 
-  it('GET /users/:user - User is not found', done => {
+  it('Should not GET /users/:user - User is not found', done => {
 
     request(app)
       .get(`/users/invalid`)
@@ -48,7 +48,7 @@ describe('User routes', () => {
   });
 
 
-  it('PUT /users/:user - Can update user details', done => {
+  it('Should PUT /users/:user - Can update user details', done => {
     const id = data.id.toString();
 
     data.document.email = 'otis@xcom.com';
@@ -59,7 +59,7 @@ describe('User routes', () => {
       .expect(200, done);
   });
 
-  it('PUT /users/:user - Can cannot update a non-existent user', done => {
+  it('Should not PUT /users/:user - Can cannot update a non-existent user', done => {
     data.id = 'invalid';
 
     request(app)
@@ -68,5 +68,6 @@ describe('User routes', () => {
       .expect(400, done);
   });
 
-  it('GET /users/:user');
+  it('Should Delete /users/:user - Delete');
+  
 });
