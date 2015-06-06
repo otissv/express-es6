@@ -9,40 +9,31 @@ import bcrypt from 'bcrypt-nodejs';
 
 
 let userSchema = new mongoose.Schema({
-  firstName: String,
-
-  lastName: String,
-
+  firstName  : String,
+  lastName   : String,
   displayName: String,
-
   username: {
-    type: String,
-    unique: true,
+    type    : String,
+    unique  : true,
     required: 'Please fill in username',
     trim: true
   },
-
   email: {
-    type: String,
+    type: String
     // unique:true,
     // required: 'Please fill in your email'
     // match: [/.+\@.+\..+/, 'Please fill a valid email address']
   },
-
   password: {
-    type: String,
+    type    : String,
     required: 'Please fill in password'
   },
-
   provider: {
-    type: String,
+    type   : String,
     default: 'local'
   },
-
   providerData: {},
-
   additionalProvidersData: {},
-
   roles: {
     type: [{
       type: String,
@@ -50,18 +41,9 @@ let userSchema = new mongoose.Schema({
     }],
     default: ['user']
   },
-
-  lastLogin: {
-    type: Date
-  },
-  created: {
-    type: Date
-  },
-
-  updated: {
-    type: Date,
-    default: Date.now
-  }
+  lastLogin: { type: Date },
+  created  : { type: Date},
+  updated  : { type: Date, default: Date.now }
 });
 
 
