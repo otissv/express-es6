@@ -1,9 +1,8 @@
 'use strict';
 
-import app from '../../backend/app.js';
-import request from 'supertest';
-import helpers from '../helpers/helpers.js';
-
+import app from '../../../backend/app.js';
+import helpers from '../../helpers/helpers.js';
+import request from 'supertest'
 describe('Core routes', () => {
   after( () => {
     helpers.uncacheModule('../../backend/app.js');

@@ -4,10 +4,9 @@
 
 'use strict';
 
-import app from '../../backend/app.js';
+import app from '../../../backend/app.js';
+import helpers from '../../helpers/helpers.js';
 import request from 'supertest';
-import helpers from '../helpers/helpers.js';
-
 
 describe('User routes', () => {
   const url = 'mongodb://127.0.0.1:27017/test';
