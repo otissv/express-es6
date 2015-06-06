@@ -8,13 +8,20 @@ import User from '../models/users-model.js';
 
 let userController = {
   find (req, res) {
-    User.findById(req.params.user, (err, user) => {
-      if (typeof user !== 'undefined') {
+    const id = req.params.user;
+
+    User.findById(id, (err, user) => {
+      if (err) {
+        return res.status(400).send({
+          message: 'User cannot be found'
+        });
+      }
+
+      if (typeof user !== 'undefined' && user !== null) {
         return res.send(user);
       } else {
-        res.status(404);
-        return res.send({
-          message: err
+        return res.status(404).send({
+          message: 'error'
         });
       }
     });
@@ -22,32 +29,45 @@ let userController = {
 
 
   update (req, res) {
-    const data = req.body.document;
-    const id = { _id: req.body.id };
+    const data = req.body;
+    const id = req.body.id;
 
-    User.update(id, data, (err, user) => {
+    User.update(id, data, (err, result) => {
       if (err) {
         return res.status(400).send({
           message: 'User cannot be found'
         });
+      }
+
+      if (result.nModified === 1) {
+        return res.send({message: 'success'});
       } else {
-        return res.json(user);
+        return res.status(404).send({
+          message: 'error'
+        });
       }
     });
   },
 
 
   remove (req, res) {
-    var user = req.user;
+    var id = req.params.user;
 
-    user.remove( (err) => {
+    User.remove( id, (err, result) => {
       if (err) {
         return res.status(400).send({
-          message: helper.getErrorMessage(err, "user")
+          message: 'User cannot be found'
+        });
+      }
+
+      if (result.result.n === 1) {
+        return res.status(404).send({
+          message: 'error'
         });
       } else {
-        return res.json(user);
+        return res.send({message: 'success'});
       }
+
     });
   }
 

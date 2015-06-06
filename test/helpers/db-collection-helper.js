@@ -5,13 +5,17 @@
 'use strict';
 
 import seed from './seed-helper.js';
-import objectID from "bson-objectid";
+import objectID from 'bson-objectid';
 
 
 let dropCollection = (db, dropCols) => {
-  dropCols.forEach( (collection) => {
-    db.collection(collection).drop();
-  });
+  if (Array.isArray(dropCols)) {
+    dropCols.forEach( (collection) => {
+      db.collection(collection).drop();
+    });
+  } else {
+    db.collection(dropCols).drop();
+  }
 };
 
 
@@ -84,7 +88,7 @@ let dbCollection = (opts) => {
 
 
 /*
-* Insert one document in to the data base
+* Insert one document in to the database
 */
 let insertOne = (opts) => {
 
@@ -92,10 +96,7 @@ let insertOne = (opts) => {
   const collection = opts.collection;
   const document = opts.data;
 
-  const data = {
-   id: objectID(),
-   document
- };
+  document._id = objectID();
 
   let MongoClient = require('mongodb').MongoClient;
 
@@ -103,11 +104,15 @@ let insertOne = (opts) => {
     if (err) {
       console.log(err);
     }
+    dropCollection(db, collection);
 
     insertDocuments(db, collection, document);
+
+    db.close();
   });
 
-  return data;
+
+  return document;
 };
 
 

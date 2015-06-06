@@ -11,20 +11,19 @@ import helpers from '../helpers/helpers.js';
 
 describe('User routes', () => {
   const url = 'mongodb://127.0.0.1:27017/test';
+  const collection = 'users';
 
-  let data;
+  let user;
+  let id;
 
-  let testUser = {
+  let data = {
     username: 'ania',
     password: 'xyz'
   };
 
+
   before( () => {
-    data = helpers.db.insertOne({
-      url        : url,
-      collection : 'users',
-      data       :testUser
-    });
+    user = helpers.db.insertOne( {url, collection, data} );
   });
 
 
@@ -33,25 +32,41 @@ describe('User routes', () => {
   });
 
 
+  it('Should not GET /users/:user - User is not found', done => {
+    request(app)
+      .get(`/users/invalid`)
+      .expect(400, done);
+  });
+
   it('Should GET /users/:user - Can get a vaild user', done => {
+    id = user._id.toString();
 
     request(app)
-      .get(`/users/${data.id}`)
+      .get(`/users/${id}`)
       .expect(200, done);
   });
 
-  it('Should not GET /users/:user - User is not found', done => {
+  it('Should not PUT /users/:user - Cannot update a non-existent user', done => {
+    data.id = 'invalid';
 
     request(app)
-      .get(`/users/invalid`)
+      .put(`/users/invalid`)
+      .send(data)
       .expect(404, done);
   });
 
+  it('Should not PUT /users/:user - Cannot update a non-existent user', done => {
+    data.id = 'invalid';
+
+    request(app)
+      .put(`/users/invalid`)
+      .send(data)
+      .expect(404, done);
+  });
 
   it('Should PUT /users/:user - Can update user details', done => {
-    const id = data.id.toString();
-
-    data.document.email = 'otis@xcom.com';
+    id = user._id.toString();
+    data.email = 'otis@xcom.com';
 
     request(app)
       .put(`/users/${id}`)
@@ -59,15 +74,22 @@ describe('User routes', () => {
       .expect(200, done);
   });
 
-  it('Should not PUT /users/:user - Can cannot update a non-existent user', done => {
-    data.id = 'invalid';
+
+  it('Should not Delete /users/:user - Cannot delete non-existent user', done => {
+    id = 'invalid';
 
     request(app)
-      .put(`/users/invalid`)
-      .send(data)
-      .expect(400, done);
+      .delete(`/users/${id}`)
+      .expect(404, done);
   });
 
-  it('Should Delete /users/:user - Delete');
-  
+  it('Should Delete /users/:user - Can delete user', done => {
+    id = user._id.toString();
+
+    request(app)
+      .delete(`/users/${id}`)
+      .expect(200, done);
+  });
+
+
 });
